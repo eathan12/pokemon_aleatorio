@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="font/pokemon/Pokemon Solid.ttf">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        @font-face {
+		font-family: pokemon-solid;
+		src: url(font/pokemon/solid.ttf);
+	    }
+        @font-face {
+		font-family: pokemon-void;
+		src: url(font/pokemon/hollow.ttf);
+	    }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .ghost{
+            background-image: url(imagenes/ghost.jpg);
+        }
+        .bug{
+            background-image: url(imagenes/bicho.jpg);
+        }
+        .ice{
+            background-image: url(imagenes/hielo.jpg);
+        }
+        .water{
+            background-image: url(imagenes/agua.jpg);
+        }
+        .rock{
+            background-image: url(imagenes/rock.jpg);
+        }
+        .psychic{
+            background-image: url(imagenes/psychic.jpg.jpg);
+        }
+        .electric{
+            background-image: url(imagenes/eléctrico.jpg);
+        }
+        .fire{
+            background-image: url(imagenes/fuego.jpg);
+        }
+        .steel{
+            background-image: url(imagenes/acero.jpg);
+        }
+        .grass{
+            background-image: url(imagenes/glass.jpg);
+        }
+        .poison{
+            background-image: url(imagenes/poison.jpg);
+        }
+        .dark{
+            background-image: url(imagenes/dark.jpg);
+        }
+        .ground{
+            background-image: url(imagenes/ground.jpg);
+        }
+        .fairy{
+            background-image: url(imagenes/hada.jpg);
+        }
+        .dragon{
+            background-image: url(imagenes/dragon.jpg);
+        }
+        .normal{
+            background-image: url(imagenes/normal.jpg);
+        }
+        .fighting{
+            background-image: url(imagenes/fighting.jpg);
+        }
+
+        #container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+        .atributos{
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .divCreado{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            height: 500px;
+            width: 350px;
+            color: white;
+            background: rgba(0, 0, 0, 0.76);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.90);
+            backdrop-filter: blur(7.7px);
+            box-shadow: 10px 10px 12px -1px rgba(0,0,0,0.90);
+        }
+        .divImagen{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: solid 8px rgb(255, 255, 255);
+            height: 290px;
+            width: 290px;
+            box-shadow:  
+            0px 0px 10px rgba(255, 255, 255, 0.952), 
+            0px 0px 20px rgba(255, 255, 255, 0.857), 
+            0px 0px 30px rgba(255, 255, 255, 0.748), 
+            0px 0px 40px rgba(255, 255, 255, 0.603), 
+            0px 0px 50px rgba(255, 255, 255, 0.384), 
+            0px 0px 60px rgba(255, 255, 255, 0.212),
+            0px 0px 10px rgba(255, 255, 255, 0.952) inset, 
+            0px 0px 20px rgba(255, 255, 255, 0.85) inset, 
+            0px 0px 30px rgba(255, 255, 255, 0.689) inset, 
+            0px 0px 40px rgba(255, 255, 255, 0.603) inset, 
+            0px 0px 50px rgba(255, 255, 255, 0.384) inset, 
+            0px 0px 60px rgba(255, 255, 255, 0.212) inset;
+        }
+        h1{
+            font-family: pokemon-solid;
+            font-size: 45px;
+            letter-spacing: 4px;
+            padding-top: 10px;
+        }
+        img{
+            height: 275px;
+            width: 275px;
+        }
+        .tituloAtributos{
+            display: flex;
+            justify-content: center;
+        }
+        p,h2,h1{
+            text-align: center;
+            font-weight: bold;
+        }
+        .datosPokemon{
+            padding: 0px 5px;
+            font-family: 'Delius', cursive;
+        }
+        .datosPokemon::before{
+            content:"";
+            background-color:white;
+            width: 400px;
+            height: 10px;
+            top: 500px;
+            left: 500px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        
+    </div>
+
+  
+    <script>
+        const container = document.getElementById("container")
+        function aleatorio() {
+            return Math.floor(Math.random() * 649)
+        }
+        const numaleatorio = aleatorio()
+
+
+        async function fetchData() {   
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/649`);
+        const pokeList = await response.json();
+        console.log(pokeList);
+        const divTipos=document.createElement("div")
+        const divBody = document.querySelector("body")
+        divBody.className=pokeList.types[0].type.name
+
+        container.innerHTML = ""
+        const divCreado = document.createElement("div")
+        divCreado.className = "divCreado" 
+        divCreado.innerHTML = `
+        <h1>${pokeList.name}</h1>
+        <div class="divImagen">
+            <img src="${pokeList.sprites.other.dream_world.front_default}" alt="">
+        </div>
+        <div class="datosPokemon">
+            <h2>Type</h2>
+            <p>${pokeList.types[0].type.name}</p>
+        </div>
+        <div class="datosPokemon">
+            <h2>XP</h2>
+            <p>${pokeList.base_experience}</p> 
+        </div>
+        <div class="datosPokemon">
+            <h2>Weight</h2>
+            <p>${pokeList.weight} kg.</p> 
+        </div>
+        `
+        container.appendChild(divCreado);
+        
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+fetchData()
+    </script>
+</body>
+</html>
