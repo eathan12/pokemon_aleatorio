@@ -150,14 +150,7 @@
             padding: 0px 5px;
             font-family: 'Delius', cursive;
         }
-        .datosPokemon::before{
-            content:"";
-            background-color:white;
-            width: 400px;
-            height: 10px;
-            top: 500px;
-            left: 500px;
-        }
+ 
 
     </style>
 </head>
@@ -177,7 +170,7 @@
 
         async function fetchData() {   
     try {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/649`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${numaleatorio}`);
         const pokeList = await response.json();
         console.log(pokeList);
         const divTipos=document.createElement("div")
